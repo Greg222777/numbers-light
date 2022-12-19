@@ -10,12 +10,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.rememberNavController
+import com.nowik.numberslight.utils.WindowSize
 
 @Composable
-fun NumbersLightComposeApplication() {
+fun NumbersLightComposeApplication(windowClassSize: WindowSize) {
     val navController = rememberNavController()
-
-    Log.e("GREG", "APP SCAFFOLD")
 
     // A surface container using the 'background' color from the theme
     Scaffold(topBar = {
@@ -40,7 +39,8 @@ fun NumbersLightComposeApplication() {
         Surface() {
             Box(modifier = Modifier.padding(innerPadding)) {
                 NumbersLightNavHost(
-                    navController = navController
+                    navController = navController,
+                    windowClassSize= windowClassSize
                 )
             }
         }

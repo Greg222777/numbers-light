@@ -17,10 +17,8 @@ class NumbersViewModel(private val numbersRepository: NumbersRepository) : ViewM
     val uiState: StateFlow<NumbersUiState> = _uiState.asStateFlow()
 
     fun getAll() = viewModelScope.launch(Dispatchers.IO) {
-        Log.e("GREG", "GET ALL")
         numbersRepository.getAll().firstOrNull { numbers ->
             _uiState.update { state ->
-                Log.e("GREG", "UPDATE UI STATE with ${numbers?.size}")
                 state.copy(
                     numbers = mutableStateOf(numbers ?: listOf())
                 )

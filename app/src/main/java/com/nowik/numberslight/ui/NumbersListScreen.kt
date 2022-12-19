@@ -7,9 +7,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.nowik.numberslight.model.Number
+import com.nowik.numberslight.utils.WindowSize
 
 @Composable
-fun NumbersListRoute(viewModel: NumbersViewModel, onNumberClicked : (Number) -> Unit) {
+fun NumbersListRoute(
+    viewModel: NumbersViewModel,
+    onNumberClicked: (Number) -> Unit
+) {
     val uiState by viewModel.uiState.collectAsState()
     LaunchedEffect(Unit) {
         viewModel.getAll()
@@ -20,12 +24,11 @@ fun NumbersListRoute(viewModel: NumbersViewModel, onNumberClicked : (Number) -> 
 
 @Composable
 fun NumbersListScreen(uiState: NumbersUiState, onNumberClicked: (Number) -> Unit) {
-    Log.e("GREG", "NUMBER LIST SCREEN")
     LazyColumn() {
         uiState.numbers.value.forEach { number ->
             item {
-                NumberItem(number = number){
-                        onNumberClicked(number)
+                NumberItem(number = number) {
+                    onNumberClicked(number)
                 }
             }
         }

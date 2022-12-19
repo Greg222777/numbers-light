@@ -23,6 +23,13 @@ fun NumberDetailsRoute(numberDetailsViewModel: NumberDetailsViewModel, numberId:
 }
 
 @Composable
+fun DynamicNumberDetailsRoute(numberDetailsViewModel: NumberDetailsViewModel, numberId: String) {
+    val uiState by numberDetailsViewModel.uiState.collectAsState()
+    numberDetailsViewModel.getNumberDetails(numberId)
+    NumberDetailsScreen(uiState)
+}
+
+@Composable
 fun NumberDetailsScreen(uiState: NumberDetailsUiState) {
     Column(
         Modifier.fillMaxSize(),

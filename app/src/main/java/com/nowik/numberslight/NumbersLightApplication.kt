@@ -16,7 +16,6 @@ import org.koin.dsl.module
 class NumbersLightApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        Log.e("GREG", "on create APP")
         setupKoin()
     }
 

@@ -1,6 +1,5 @@
 package com.nowik.numberslight.ui
 
-import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -17,13 +16,15 @@ class NumberDetailsViewModel(private val numbersRepository: NumbersRepository) :
     val uiState: StateFlow<NumberDetailsUiState> = _uiState.asStateFlow()
 
     fun getNumberDetails(numberId: String) = viewModelScope.launch(Dispatchers.IO) {
-        numbersRepository.get(numberId).firstOrNull {
-            _uiState.update { state ->
-                state.copy(
-                    number = mutableStateOf(it)
-                )
+        if (uiState.value.number.value?.id != numberId) {
+            numbersRepository.get(numberId).firstOrNull {
+                _uiState.update { state ->
+                    state.copy(
+                        number = mutableStateOf(it)
+                    )
+                }
+                true
             }
-            true
         }
     }
 }
