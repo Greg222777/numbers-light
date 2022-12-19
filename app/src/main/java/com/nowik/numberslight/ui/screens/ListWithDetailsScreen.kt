@@ -1,23 +1,26 @@
 package com.nowik.numberslight.ui
 
-import android.util.Log
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color.Companion.Blue
-import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.unit.dp
+import com.nowik.numberslight.ui.screens.DynamicNumberDetailsRoute
+import com.nowik.numberslight.ui.screens.NumbersListRoute
+import com.nowik.numberslight.ui.viewmodels.NetworkStateViewModel
+import com.nowik.numberslight.ui.viewmodels.NumberDetailsViewModel
+import com.nowik.numberslight.ui.viewmodels.NumbersViewModel
 
 @Composable
 fun ListWithDetails(
     numbersViewModel: NumbersViewModel,
+    connectivityViewModel : NetworkStateViewModel,
     numberDetailsViewModel: NumberDetailsViewModel
 ) {
     var selectedId by remember {
         mutableStateOf<String?>(null)
     }
+
     Row(modifier = Modifier.fillMaxSize()) {
         Box(
             modifier = Modifier
@@ -25,7 +28,7 @@ fun ListWithDetails(
                 .weight(1f)
                 .padding(8.dp)
         ) {
-            NumbersListRoute(viewModel = numbersViewModel) {
+            NumbersListRoute(viewModel = numbersViewModel, connectivityViewModel) {
                 selectedId = it.id
             }
         }

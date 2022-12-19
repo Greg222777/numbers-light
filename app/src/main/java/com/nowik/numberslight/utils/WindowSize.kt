@@ -17,7 +17,6 @@ package com.nowik.numberslight.utils
  */
 
 import android.app.Activity
-import android.util.Log
 import androidx.annotation.VisibleForTesting
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember

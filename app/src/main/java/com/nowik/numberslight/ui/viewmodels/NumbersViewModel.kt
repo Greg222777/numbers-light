@@ -1,6 +1,5 @@
-package com.nowik.numberslight.ui
+package com.nowik.numberslight.ui.viewmodels
 
-import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -26,20 +25,8 @@ class NumbersViewModel(private val numbersRepository: NumbersRepository) : ViewM
             true
         }
     }
-
-    fun getNumberDetails(numberId: String) = viewModelScope.launch(Dispatchers.IO) {
-        numbersRepository.get(numberId).firstOrNull {
-            _uiState.update { state ->
-                state.copy(
-                    selectedNumber = mutableStateOf(it)
-                )
-            }
-            true
-        }
-    }
 }
 
 data class NumbersUiState(
-    var numbers: MutableState<List<Number>> = mutableStateOf(listOf()),
-    var selectedNumber: MutableState<Number?> = mutableStateOf(null)
+    var numbers: MutableState<List<Number>> = mutableStateOf(listOf())
 )

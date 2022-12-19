@@ -1,4 +1,4 @@
-package com.nowik.numberslight.ui
+package com.nowik.numberslight.ui.viewmodels
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf

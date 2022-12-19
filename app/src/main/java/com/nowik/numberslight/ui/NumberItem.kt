@@ -41,5 +41,5 @@ fun NumberItem(number: com.nowik.numberslight.model.Number, onclick: () -> Unit)
 @Composable
 fun NumberItemPreview() {
     val number = com.nowik.numberslight.model.Number("999", "https://example.com/image.jpg")
-    NumberItem(number = number){}
+    NumberItem(number = number) {}
 }

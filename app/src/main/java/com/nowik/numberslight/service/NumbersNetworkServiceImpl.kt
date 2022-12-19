@@ -1,22 +1,17 @@
 package com.nowik.numberslight.service
 
-import android.util.Log
-import kotlinx.coroutines.flow.Flow
-import retrofit2.Retrofit
 import com.nowik.numberslight.model.Number
-import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
-import okhttp3.Dispatcher
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class NumbersNetworkServiceImpl : NumbersService {
 
-
     private val retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl("http://dev.tapptic.com/test/")
+        .baseUrl("http://dev.tapptic.com/test/") //TODO put in local properties (should not be versioned)
         .client(createClient())
         .addConverterFactory(GsonConverterFactory.create())
         .build()
@@ -32,13 +27,19 @@ class NumbersNetworkServiceImpl : NumbersService {
 
     override fun getAll(): Flow<List<Number>?> {
         return flow {
-            emit(numbersService.getAll().body())
+            kotlin.runCatching {
+                emit(numbersService.getAll().body())
+            }
+
         }
     }
 
     override fun get(numberId: String): Flow<Number?> {
         return flow {
-            emit(numbersService.get(numberId).body())
+            kotlin.runCatching {
+                emit(numbersService.get(numberId).body())
+            }
+
         }
     }
 

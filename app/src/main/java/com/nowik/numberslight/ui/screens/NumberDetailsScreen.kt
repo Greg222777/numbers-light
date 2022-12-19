@@ -1,4 +1,4 @@
-package com.nowik.numberslight.ui
+package com.nowik.numberslight.ui.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
@@ -12,9 +12,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.nowik.numberslight.ui.viewmodels.NumberDetailsUiState
+import com.nowik.numberslight.ui.viewmodels.NumberDetailsViewModel
 
 @Composable
 fun NumberDetailsRoute(numberDetailsViewModel: NumberDetailsViewModel, numberId: String) {
+    // requests number only at first composition
     val uiState by numberDetailsViewModel.uiState.collectAsState()
     LaunchedEffect(Unit) {
         numberDetailsViewModel.getNumberDetails(numberId)
@@ -24,6 +27,7 @@ fun NumberDetailsRoute(numberDetailsViewModel: NumberDetailsViewModel, numberId:
 
 @Composable
 fun DynamicNumberDetailsRoute(numberDetailsViewModel: NumberDetailsViewModel, numberId: String) {
+    // requests number at every composition
     val uiState by numberDetailsViewModel.uiState.collectAsState()
     numberDetailsViewModel.getNumberDetails(numberId)
     NumberDetailsScreen(uiState)
