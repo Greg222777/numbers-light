@@ -36,9 +36,9 @@ class NumbersNetworkServiceImpl : NumbersService {
         }
     }
 
-    override fun get(numberId: Int): Flow<Number?> {
+    override fun get(numberId: String): Flow<Number?> {
         return flow {
-            emit(numbersService.get(1).body())
+            emit(numbersService.get(numberId).body())
         }
     }
 

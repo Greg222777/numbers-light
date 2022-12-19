@@ -5,5 +5,5 @@ import com.nowik.numberslight.model.Number
 
 interface NumbersRepository  {
     fun getAll() : Flow<List<Number>?>
-    fun get(numberId: Int) : Flow<Number?>
+    fun get(numberId: String) : Flow<Number?>
 }

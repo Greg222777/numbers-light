@@ -10,5 +10,5 @@ interface NumbersApi {
     suspend fun getAll(): Response<List<Number>>
 
     @GET("json.php")
-    suspend fun get(@Query("name") numberId: Int): Response<Number>
+    suspend fun get(@Query("name") numberId: String): Response<Number>
 }

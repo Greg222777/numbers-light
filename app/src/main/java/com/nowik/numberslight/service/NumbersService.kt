@@ -6,5 +6,5 @@ interface NumbersService {
 
     fun getAll() : Flow<List<Number>?>
 
-    fun get(numberId: Int) : Flow<Number?>
+    fun get(numberId: String) : Flow<Number?>
 }
