@@ -10,11 +10,6 @@ import org.mockito.Mockito
 import org.mockito.kotlin.mock
 import com.nowik.numberslight.model.Number
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
 class NumbersViewModelTests {
 
     private val mockNumbersRepository = mock<NumbersRepository>()
@@ -34,7 +29,7 @@ class NumbersViewModelTests {
     }
 
     @Test
-    fun addition_isCorrect() {
+    fun `verify ui state is updated with repository results`() {
         assertTrue(vm.uiState.value.numbers.value.isEmpty())
 
         vm.getAll()
